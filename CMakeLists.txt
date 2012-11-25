@@ -14,6 +14,7 @@ INSTALL(
   ${CMAKE_SOURCE_DIR}/json_spirit/json_spirit_utils.h
   ${CMAKE_SOURCE_DIR}/json_spirit/json_spirit_value.h
   ${CMAKE_SOURCE_DIR}/json_spirit/json_spirit_writer.h
+  ${CMAKE_SOURCE_DIR}/json_spirit/json_spirit_writer_options.h
   ${CMAKE_SOURCE_DIR}/json_spirit/json_spirit_writer_template.h
   DESTINATION include)
 
