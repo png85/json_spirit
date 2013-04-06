@@ -52,6 +52,7 @@ namespace json_spirit
         Value_impl( const Array&       value );
         Value_impl( bool               value );
         Value_impl( int                value );
+        Value_impl( unsigned int       value );
         Value_impl( boost::int64_t     value );
         Value_impl( boost::uint64_t    value );
         Value_impl( double             value );
@@ -78,6 +79,7 @@ namespace json_spirit
         const Array&       get_array()  const;
         bool               get_bool()   const;
         int                get_int()    const;
+        unsigned int       get_uint()   const;
         boost::int64_t     get_int64()  const;
         boost::uint64_t    get_uint64() const;
         double             get_real()   const;
@@ -297,6 +299,12 @@ namespace json_spirit
     }
 
     template< class Config >
+    Value_impl< Config >::Value_impl( unsigned int value )
+    :   v_( static_cast< boost::uint64_t >( value ) )
+    {
+    }
+
+    template< class Config >
     Value_impl< Config >::Value_impl( boost::int64_t value )
     :   v_( value )
     {
@@ -429,6 +437,14 @@ namespace json_spirit
 
         return static_cast< int >( get_int64() );
     }
+
+    template< class Config >
+    unsigned int Value_impl< Config >::get_uint() const
+    {
+        check_type( int_type );
+
+        return static_cast< unsigned int >( get_uint64() );
+    }
     
     template< class Config >
     boost::int64_t Value_impl< Config >::get_int64() const
@@ -529,6 +545,12 @@ namespace json_spirit
         int get_value( const Value& value, Type_to_type< int > )
         {
             return value.get_int();
+        }
+
+        template< class Value > 
+        unsigned int get_value( const Value& value, Type_to_type< unsigned int > )
+        {
+            return value.get_uint();
         }
        
         template< class Value > 

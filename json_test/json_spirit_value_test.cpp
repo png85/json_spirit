@@ -81,10 +81,12 @@ namespace
         Value v1( 1 );
         Value v2( 1 );
         Value v3( INT_MAX );
+        Value v9( UINT_MAX );
 
         assert_eq( v1.type(), int_type );
         assert_eq ( v1, v2 );
         assert_neq( v1, v3 );
+        assert_neq( v1, v9 );
 
         unsigned int uint_max = INT_MAX;
         
@@ -92,6 +94,7 @@ namespace
         assert_eq( v1.get_int64(),  1 );
         assert_eq( v1.get_uint64(), 1u );
         assert_eq( v3.get_int(),    INT_MAX );
+        assert_eq( v9.get_uint(),   UINT_MAX );
         assert_eq( v3.get_int64(),  INT_MAX );
         assert_eq( v3.get_uint64(), uint_max );
 
@@ -114,6 +117,7 @@ namespace
 
         assert_eq( v7.get_int(),    0 );
         assert_eq( v7.get_int64(),  0 );
+        assert_eq( v7.get_uint(),   0 );
         assert_eq( v7.get_uint64(), 0u );
 
         Value v8( -1 );
@@ -351,6 +355,7 @@ namespace
         check_wrong_type_exceptions< bool >( bool_type );
         check_wrong_type_exceptions< boost::int64_t >( int_type );
         check_wrong_type_exceptions< int >( int_type );
+        check_wrong_type_exceptions< unsigned int >( int_type );
         check_wrong_type_exceptions< double >( real_type );
     }
 #endif
