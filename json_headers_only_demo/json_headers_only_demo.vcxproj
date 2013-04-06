@@ -79,6 +79,11 @@
   <ItemGroup>
     <ClCompile Include="json_headers_only_demo.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\json_spirit\json_spirit.vcxproj">
+      <Project>{be262a86-cc26-4b25-a877-883ed2688cec}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

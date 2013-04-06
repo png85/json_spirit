@@ -9,4 +9,5 @@
 
 # Visual studio files
 *.sdf
+*.opensdf
 Debug/
