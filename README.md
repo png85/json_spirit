@@ -28,7 +28,7 @@ The Visual C++ solution consists of five projects:
 
 JSON Spirit Value
 -------------
-A JSON value can hold either a JSON ```array```, JSON ```object```, ```string```, ```integer```, ```double```,
+A JSON value can hold either a JSON ```array```, JSON ```object```, ```string```, ```unsigned integer```, ```integer```, ```double```,
 ```bool```, or ```null```. The interface of the JSON Spirit ```Value``` class is shown below. The Value class for
 Unicode is analogous; for details, see the section on Unicode support.
 ```cpp
@@ -47,6 +47,7 @@ class Value
         Value( const Array&         value );
         Value( bool                 value );
         Value( int                  value );
+        Value( unsigned int         value );
         Value_impl( boost::int64_t  value );
         Value_impl( boost::uint64_t value );
         Value( double               value );
@@ -60,6 +61,7 @@ class Value
         const Array&       get_array()  const;
         bool               get_bool()   const;
         int                get_int()    const;
+        unsigned int       get_uint()   const;
         boost::int64_t     get_int64()  const;
         boost::uint64_t    get_uint64() const;
         double             get_real()   const;
