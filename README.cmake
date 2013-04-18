@@ -10,3 +10,5 @@ For using the cmake build system do the following steps:
 BOOST_ROOT Please set BOOST_ROOT to the root
   directory containing Boost or BOOST_INCLUDEDIR to the directory containing
   Boost's headers.
+
+To create a static library set the BUILD_STATIC_LIBRARY variable to on.
