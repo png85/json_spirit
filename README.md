@@ -10,7 +10,7 @@ Key features:
 * object library or header file only use
 
 
-Using the Code
+Using the Code [![Build Status](https://travis-ci.org/png85/json_spirit.png?branch=master)](https://travis-ci.org/png85/json_spirit)
 ===========
 The JSON Spirit source code is available as a Microsoft Visual Studio 2005 C++ "solution". However, it should
 compile and work on any platform compatible with Boost. JSON Spirit has been built and tested with Visual C++

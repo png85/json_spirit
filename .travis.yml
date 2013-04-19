@@ -1,0 +1,13 @@
+language: c++
+compiler:
+  - gcc
+  - clang
+
+script:
+  - mkdir build
+  - cd build
+  - cmake ..
+  - cmake --build . --target all --
+
+after_script:
+  - ctest
