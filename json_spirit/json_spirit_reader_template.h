@@ -1,10 +1,11 @@
 #ifndef JSON_SPIRIT_READER_TEMPLATE
 #define JSON_SPIRIT_READER_TEMPLATE
 
-//          Copyright John W. Wilkinson 2007 - 2011
+//          Copyright John W. Wilkinson 2007 - 2013
 // Distributed under the MIT License, see accompanying file LICENSE.txt
 
-// json spirit version 4.06
+// json spirit version 4.07
+// upstream json spirit version 4.06
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1020)
 # pragma once
@@ -488,7 +489,7 @@ namespace json_spirit
                     ;
 
                 string_ 
-                    = lexeme_d // this causes white space inside a string to be retained
+                    = lexeme_d // this causes white space and what would appear to be comments inside a string to be retained
                       [
                           confix_p
                           ( 
@@ -564,7 +565,9 @@ namespace json_spirit
         const spirit_namespace::parse_info< Iter_type > info = 
                             spirit_namespace::parse( begin, end, 
                                                     Json_grammer< Value_type, Iter_type >( semantic_actions ), 
-                                                    spirit_namespace::space_p );
+                                                    spirit_namespace::space_p | 
+                                                    spirit_namespace::comment_p("//") | 
+                                                    spirit_namespace::comment_p("/*", "*/") );
 
         if( !info.hit )
         {

@@ -3,6 +3,7 @@
    This source code can be used for any purpose as long as
    this comment is retained. */
 
-// json spirit version 4.06
+// json spirit version 4.07
+// upstream json spirit version 4.06
 
 #include "json_spirit_value.h"

@@ -1,7 +1,8 @@
-//          Copyright John W. Wilkinson 2007 - 2011
+//          Copyright John W. Wilkinson 2007 - 2013
 // Distributed under the MIT License, see accompanying file LICENSE.txt
 
-// json spirit version 4.06
+// json spirit version 4.07
+// upstream json spirit version 4.06
 
 #include "json_spirit_value_test.h"
 #include "utils_test.h"
@@ -325,12 +326,8 @@ namespace
     }
 
     template< typename T >
-    void check_wrong_type_exceptions( const Value_type vtype )
+    void check_wrong_type_exceptions( const Value& v, const string& requested_type_name, const string& actual_type_name )
     {
-        Value v;
-
-        assert_eq( v.type(), null_type );
-
         try
         {
             v.get_value< T >();
@@ -341,22 +338,38 @@ namespace
         {
             ostringstream os;
 
-            os << "value type is " << null_type << " not " << vtype;
+            os << "get_value< " << requested_type_name << " > called on " << actual_type_name << " Value";
 
             assert_eq( e.what(), os.str() );
         }
     }
 
+    template< typename T >
+    void check_wrong_type_exceptions( const string& requested_type_name )
+    {
+        Value v;
+
+        assert_eq( v.type(), null_type );
+
+        check_wrong_type_exceptions< T >( v, requested_type_name, "null" );
+    }
+
     void test_wrong_type_exceptions()
     {
-        check_wrong_type_exceptions< Object >( obj_type );
-        check_wrong_type_exceptions< Array >( array_type );
-        check_wrong_type_exceptions< string >( str_type );
-        check_wrong_type_exceptions< bool >( bool_type );
-        check_wrong_type_exceptions< boost::int64_t >( int_type );
-        check_wrong_type_exceptions< int >( int_type );
-        check_wrong_type_exceptions< unsigned int >( int_type );
-        check_wrong_type_exceptions< double >( real_type );
+        check_wrong_type_exceptions< Object >( "Object" );
+        check_wrong_type_exceptions< Array >( "Array" );
+        check_wrong_type_exceptions< string >( "string" );
+        check_wrong_type_exceptions< bool >( "boolean" );
+        check_wrong_type_exceptions< boost::int64_t >( "integer" );
+        check_wrong_type_exceptions< int >( "integer" );
+        check_wrong_type_exceptions< unsigned int >( "integer" );
+        check_wrong_type_exceptions< double >( "real" );
+
+        Value v( "string" );
+
+        assert_eq( v.type(), str_type );
+
+        check_wrong_type_exceptions< double >( v, "real", "string" );
     }
 #endif
 
