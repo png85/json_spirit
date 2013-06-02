@@ -1,7 +1,8 @@
-//          Copyright John W. Wilkinson 2007 - 2011
+//          Copyright John W. Wilkinson 2007 - 2013
 // Distributed under the MIT License, see accompanying file LICENSE.txt
 
-// json spirit version 4.05
+// json spirit version 4.07
+// upstream json spirit version 4.06
 
 #include "json_spirit_writer_test.h"
 #include "utils_test.h"
@@ -677,6 +678,26 @@ namespace
     };
 
 #if defined( JSON_SPIRIT_WVALUE_ENABLED ) && !defined( BOOST_NO_STD_WSTRING )
+    void test_always_esc_nonascii()
+    {
+        if( iswprint( L'\x05DE' ) )
+        {
+            const wstring s( L"\x05DE\x05E9\x05EA\x05DE\x05E9" );
+
+            wArray arr( 1, s );
+
+            const wstring foo = arr[0].get_str();
+
+            const wstring json_raw = write( arr );
+
+            assert_eq( json_raw, L"[\"" + s + L"\"]" );
+
+            const wstring json_escaped = write( arr, always_escape_nonascii );
+
+            assert_eq( json_escaped, L"[\"\\u05DE\\u05E9\\u05EA\\u05DE\\u05E9\"]" );
+        }
+    }
+
     void test_wide_esc_u( wchar_t c, const wstring& result)
     {
         const wstring s( 1, c );
@@ -703,9 +724,9 @@ namespace
 #ifdef JSON_SPIRIT_VALUE_ENABLED
     void test_extended_ascii()
     {
-        const string expeced_result( is_printable( 'ה' ) ? "[\"הצüß\"]" : "[\"\\u00E4\\u00F6\\u00FC\\u00DF\"]" );
+        const string expeced_result( is_printable( '\xE4' ) ? "[\"\xE4\xF6\xFC\xDF\"]" : "[\"\\u00E4\\u00F6\\u00FC\\u00DF\"]" );
 
-        assert_eq( write( Array( 1, "הצüß" ) ), expeced_result );
+        assert_eq( write( Array( 1, "\xE4\xF6\xFC\xDF" ) ), expeced_result );
     }
 #endif
 }
@@ -722,6 +743,7 @@ void json_spirit::test_writer()
 #if defined( JSON_SPIRIT_WVALUE_ENABLED ) && !defined( BOOST_NO_STD_WSTRING )
     Test_runner< wConfig  >().run_tests();
     test_wide_esc_u();
+    test_always_esc_nonascii();
 #endif
 #if defined( JSON_SPIRIT_WMVALUE_ENABLED ) && !defined( BOOST_NO_STD_WSTRING )
     Test_runner< wmConfig >().run_tests();
