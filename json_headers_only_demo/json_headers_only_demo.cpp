@@ -1,7 +1,8 @@
-//          Copyright John W. Wilkinson 2007 - 2011
+//          Copyright John W. Wilkinson 2007 - 2013
 // Distributed under the MIT License, see accompanying file LICENSE.txt
 
-// json spirit version 4.05
+// json spirit version 4.07
+// upstream json spirit version 4.06
 
 // This demo shows you how to read and write JSON objects and arrays 
 // using header files only, i.e. not linking to the JSON Spirit object library.

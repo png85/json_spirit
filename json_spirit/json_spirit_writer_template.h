@@ -1,10 +1,11 @@
 #ifndef JSON_SPIRIT_WRITER_TEMPLATE
 #define JSON_SPIRIT_WRITER_TEMPLATE
 
-//          Copyright John W. Wilkinson 2007 - 2011
+//          Copyright John W. Wilkinson 2007 - 2013
 // Distributed under the MIT License, see accompanying file LICENSE.txt
 
-// json spirit version 4.06
+// json spirit version 4.07
+// upstream json spirit version 4.06
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1020)
 # pragma once
@@ -66,7 +67,7 @@ namespace json_spirit
     }
 
     template< class String_type >
-    String_type add_esc_chars( const String_type& s, bool raw_utf8 )
+    String_type add_esc_chars( const String_type& s, bool raw_utf8, bool esc_nonascii )
     {
         typedef typename String_type::const_iterator Iter_type;
         typedef typename String_type::value_type     Char_type;
@@ -89,7 +90,7 @@ namespace json_spirit
             {
                 const wint_t unsigned_c( ( c >= 0 ) ? c : 256 + c );
 
-                if( iswprint( unsigned_c ) )
+                if( !esc_nonascii && iswprint( unsigned_c ) )
                 {
                     result += c;
                 }
@@ -175,6 +176,7 @@ namespace json_spirit
         ,   indentation_level_( 0 )
         ,   pretty_( ( options & pretty_print ) != 0 || ( options & single_line_arrays ) != 0 )
         ,   raw_utf8_( ( options & raw_utf8 ) != 0 )
+        ,   esc_nonascii_( ( options & always_escape_nonascii ) != 0 )
         ,   remove_trailing_zeros_( ( options & remove_trailing_zeros ) != 0 )
         ,   single_line_arrays_( ( options & single_line_arrays ) != 0 )
         ,   ios_saver_( os )
@@ -225,7 +227,7 @@ namespace json_spirit
 
         void output( const String_type& s )
         {
-            os_ << '"' << add_esc_chars( s, raw_utf8_ ) << '"';
+            os_ << '"' << add_esc_chars( s, raw_utf8_, esc_nonascii_ ) << '"';
         }
 
         void output( bool b )
@@ -349,6 +351,7 @@ namespace json_spirit
         int indentation_level_;
         bool pretty_;
         bool raw_utf8_;
+        bool esc_nonascii_;
         bool remove_trailing_zeros_;
         bool single_line_arrays_;
         boost::io::basic_ios_all_saver< Char_type > ios_saver_;  // so that ostream state is reset after control is returned to the caller
