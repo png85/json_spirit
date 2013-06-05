@@ -265,7 +265,7 @@ Unicode support is provided by ```std::wstring``` versions of the JSON Spirit ``
 ```Object```, and ```Pair``` types. These are called ```wValue```, ```wArray```, ```wObject```, and ```wPair```.
 There are also std::wstring versions of each reader and writer function.
 
-To enable Unicode support set the ```JSON_SPIRIT_WVALUE_ENABLED``` and/or ```JSON_SPIRIT_MVALUE_ENABLED``` cmake options.
+To enable Unicode support set the ```JSON_SPIRIT_WVALUE_ENABLED``` and/or ```JSON_SPIRIT_WMVALUE_ENABLED``` cmake options.
 
 Note that there is no support for reading Unicode files and converting them to ```wstrings``` as this is not a task
 specific to JSON.
