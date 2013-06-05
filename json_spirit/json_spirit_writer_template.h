@@ -14,8 +14,6 @@
 #include "json_spirit_value.h"
 #include "json_spirit_writer_options.h"
 
-#include <cassert>
-#include <sstream>
 #include <iomanip>
 #include <boost/io/ios_state.hpp>
 

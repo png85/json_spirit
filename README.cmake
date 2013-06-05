@@ -12,3 +12,8 @@ BOOST_ROOT Please set BOOST_ROOT to the root
   Boost's headers.
 
 To create a static library set the BUILD_STATIC_LIBRARY variable to on.
+
+To enable WVALUE set the JSON_SPIRIT_WVALUE_ENABLED variable to on.
+To enable MVALUE set the JSON_SPIRIT_MVALUE_ENABLED variable to on.
+To enable WMVALUE set the JSON_SPIRIT_WMVALUE_ENABLED variable to on.
+
