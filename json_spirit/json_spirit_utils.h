@@ -12,7 +12,6 @@
 #endif
 
 #include "json_spirit_value.h"
-#include <map>
 
 namespace json_spirit
 { 

@@ -265,6 +265,8 @@ Unicode support is provided by ```std::wstring``` versions of the JSON Spirit ``
 ```Object```, and ```Pair``` types. These are called ```wValue```, ```wArray```, ```wObject```, and ```wPair```.
 There are also std::wstring versions of each reader and writer function.
 
+To enable Unicode support set the ```JSON_SPIRIT_WVALUE_ENABLED``` and/or ```JSON_SPIRIT_MVALUE_ENABLED``` cmake options.
+
 Note that there is no support for reading Unicode files and converting them to ```wstrings``` as this is not a task
 specific to JSON.
 
@@ -278,6 +280,9 @@ Before version 4.00, the JSON Spirit ```Object``` type was a ```std::vector``` o
 have the option of using ```mObject``` which is a name/value ```std::map```. For the ```std::map``` version, use
 ```mValue``` instead of ```Value```, ```mObject``` instead of ```Object```, and ```mArray``` instead of
 ```Array```. For the Unicode map version, use ```wmValue```, ```wmObject```, and ```wmArray```.
+
+To enable map support set the ```JSON_SPIRIT_MVALUE_ENABLED``` and optionally set ```JSON_SPIRIT_WMVALUE_ENABLED```
+cmake options.
 
 The following table shows the time in seconds it takes on my PC to extract the data from a single object of
 varying sizes. The methods used are as per the demo programs. The vector version is faster until the number of
