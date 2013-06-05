@@ -22,11 +22,15 @@
 #include <boost/shared_ptr.hpp> 
 #include <boost/variant.hpp> 
 
-// comment out the value types you don't need to reduce build times and intermediate file sizes
 #define JSON_SPIRIT_VALUE_ENABLED
-#define JSON_SPIRIT_WVALUE_ENABLED
-#define JSON_SPIRIT_MVALUE_ENABLED
-#define JSON_SPIRIT_WMVALUE_ENABLED
+
+// Only do for microsoft compilers since the option to enable these at compile time is only in cmake right now
+#if defined(_MSC_VER)
+  // comment out the value types you don't need to reduce build times and intermediate file sizes
+  #define JSON_SPIRIT_WVALUE_ENABLED
+  #define JSON_SPIRIT_MVALUE_ENABLED
+  #define JSON_SPIRIT_WMVALUE_ENABLED
+#endif
 
 namespace json_spirit
 {
