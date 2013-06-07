@@ -13,8 +13,6 @@ json_spirit_writer_template.h )
 FIND_PACKAGE(Boost 1.34 REQUIRED)
 INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIR})
 
-OPTION(BUILD_STATIC_LIBRARIES "Build static libraries" OFF)
-
 if(BUILD_STATIC_LIBRARIES)
   ADD_LIBRARY(json_spirit STATIC ${JSON_SPIRIT_SRCS})
   install(TARGETS json_spirit ARCHIVE DESTINATION lib)

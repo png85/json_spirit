@@ -4,6 +4,8 @@ PROJECT(json_spirit)
 SUBDIRS(json_spirit json_demo json_headers_only_demo json_test)
 INCLUDE_DIRECTORIES(json_spirit)
 
+OPTION(BUILD_STATIC_LIBRARIES "Build static libraries" OFF)
+
 OPTION(JSON_SPIRIT_WVALUE_ENABLED "Build with support for unicode types" OFF)
 OPTION(JSON_SPIRIT_MVALUE_ENABLED "Build with support for ascii map types" OFF)
 OPTION(JSON_SPIRIT_WMVALUE_ENABLED "Build with support for unicode map types" OFF)
