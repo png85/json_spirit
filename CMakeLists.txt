@@ -1,4 +1,4 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8.6)
 
 PROJECT(json_spirit)
 SUBDIRS(json_spirit json_demo json_headers_only_demo json_test)
@@ -39,4 +39,8 @@ INSTALL(
   ${CMAKE_SOURCE_DIR}/json_spirit/json_spirit_writer_options.h
   DESTINATION include)
 
-INCLUDE(CPack)
+set(CPACK_PACKAGE_VERSION_MAJOR 4)
+set(CPACK_PACKAGE_VERSION_MINOR 0)
+set(CPACK_PACKAGE_VERSION_PATCH 8)
+set(CPACK_PACKAGE_DESCRIPTION "A C++ JSON Parser/Generator Implemented with Boost Spirit")
+include(CPack)
