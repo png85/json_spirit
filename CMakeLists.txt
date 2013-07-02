@@ -7,6 +7,13 @@ INCLUDE_DIRECTORIES(json_spirit)
 OPTION(JSON_SPIRIT_WVALUE_ENABLED "Build with support for unicode types" OFF)
 OPTION(JSON_SPIRIT_MVALUE_ENABLED "Build with support for ascii map types" OFF)
 OPTION(JSON_SPIRIT_WMVALUE_ENABLED "Build with support for unicode map types" OFF)
+OPTION(JSON_SPIRIT_CPP11_ENABLED "Build with C++11 enabled" ON)
+
+if(JSON_SPIRIT_CPP11_ENABLED)
+  if(CMAKE_COMPILER_IS_GNUCXX)
+    add_definitions(-std=c++0x)
+  endif(CMAKE_COMPILER_IS_GNUCXX)
+endif(JSON_SPIRIT_CPP11_ENABLED)
 
 if(JSON_SPIRIT_WVALUE_ENABLED)
   add_definitions(-DJSON_SPIRIT_WVALUE_ENABLED)
