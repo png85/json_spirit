@@ -4,7 +4,7 @@
 //          Copyright John W. Wilkinson 2007 - 2013
 // Distributed under the MIT License, see accompanying file LICENSE.txt
 
-// json spirit version 4.07
+// json spirit version 4.06.1
 // upstream json spirit version 4.06
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1020)
