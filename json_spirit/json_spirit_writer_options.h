@@ -4,7 +4,7 @@
 //          Copyright John W. Wilkinson 2007 - 2013
 // Distributed under the MIT License, see accompanying file LICENSE.txt
 
-// json spirit version 4.07
+// json spirit version 4.06.1
 // upstream json spirit version 4.06
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1020)
@@ -28,6 +28,8 @@ namespace json_spirit
                          always_escape_nonascii = 0x10,
                                                 // all unicode wide characters are escaped, i.e. outputed as "\uXXXX", even if they are
                                                 // printable under the current locale, ascii printable chars are not escaped
+                         no_quote_strings = 0x20,
+                                                // Don't place quotes around strings (useful for writing single values to a stream)
                        };
 }
 

@@ -197,7 +197,9 @@ enum Output_options
     pretty_print = 0x01, 
     raw_utf8 = 0x02, 
     remove_trailing_zeros = 0x04,
-    single_line_arrays = 0x08  
+    single_line_arrays = 0x08,
+    always_escape_nonascii = 0x10,
+    no_quote_strings = 0x20
 };
 ```
 
@@ -224,6 +226,9 @@ on single lines unless they contain composite elements, i.e. objects or arrays. 
     ]
 }
 ```
+
+The ```always_escape_nonascii``` option escapes all unicode wide characters, i.e. outputed as "\uXXXX" even if they
+are printable under the current locale, ascii printable chars are not escaped.
 
 You can apply more than one option by using the OR operator, i.e.:
 ```cpp
