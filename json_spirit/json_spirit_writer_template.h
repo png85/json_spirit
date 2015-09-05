@@ -4,7 +4,7 @@
 //          Copyright John W. Wilkinson 2007 - 2013
 // Distributed under the MIT License, see accompanying file LICENSE.txt
 
-// json spirit version 4.07
+// json spirit version 4.06.1
 // upstream json spirit version 4.06
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1020)
@@ -177,6 +177,7 @@ namespace json_spirit
         ,   esc_nonascii_( ( options & always_escape_nonascii ) != 0 )
         ,   remove_trailing_zeros_( ( options & remove_trailing_zeros ) != 0 )
         ,   single_line_arrays_( ( options & single_line_arrays ) != 0 )
+        ,   no_quote_strings_( ( options & no_quote_strings) != 0 )
         ,   ios_saver_( os )
         {
             output( value );
@@ -225,7 +226,13 @@ namespace json_spirit
 
         void output( const String_type& s )
         {
-            os_ << '"' << add_esc_chars( s, raw_utf8_, esc_nonascii_ ) << '"';
+            if(!no_quote_strings_) {
+              os_ << '"';
+            }
+            os_ << add_esc_chars( s, raw_utf8_, esc_nonascii_ );
+            if(!no_quote_strings_) {
+              os_ << '"';
+            }
         }
 
         void output( bool b )
@@ -352,6 +359,7 @@ namespace json_spirit
         bool esc_nonascii_;
         bool remove_trailing_zeros_;
         bool single_line_arrays_;
+        bool no_quote_strings_;
         boost::io::basic_ios_all_saver< Char_type > ios_saver_;  // so that ostream state is reset after control is returned to the caller
     };
 
