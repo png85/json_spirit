@@ -381,9 +381,15 @@ namespace
         Container_constructor_runner()
         {
             vector< double > vd = list_of( 1.2 )( 1.3 );  test_container_constructor( vd );
+            #if __cplusplus >= 201103L || (defined(_MSC_VER) && _MSC_VER >= 1900)
+            vector< int >    vi = { 1 };                  test_container_constructor( vi );
+                             vi = { 1, 2 };               test_container_constructor( vi );
+                             vi = { 1, 2, 3 };            test_container_constructor( vi );
+            #else
             vector< int >    vi = list_of( 1 );           test_container_constructor( vi );
                              vi = list_of( 1 )( 2 );      test_container_constructor( vi );
                              vi = list_of( 1 )( 2 )( 3 ); test_container_constructor( vi );
+            #endif                             
             list< double >   ld = list_of( 1.2 )( 1.3 );  test_container_constructor( ld );
             list< int >      li = list_of( 1 );           test_container_constructor( li );
                              li = list_of( 1 )( 2 );      test_container_constructor( li );
@@ -447,9 +453,15 @@ namespace
             }
             
             vector< double > vd = list_of( 1.2 )( 1.3 );   test_variant_array_constructor< double > ( vd );
+            #if __cplusplus >= 201103L || (defined(_MSC_VER) && _MSC_VER >= 1900)
+            vector< int >    vi = { 1 };                   test_variant_array_constructor< int >( vi );
+                             vi = { 1, 2 };                test_variant_array_constructor< int >( vi );
+                             vi = { 1, 2, 3 };             test_variant_array_constructor< int >( vi );
+            #else
             vector< int >    vi = list_of( 1 );            test_variant_array_constructor< int >( vi );
                              vi = list_of( 1 )( 2 );       test_variant_array_constructor< int >( vi );
                              vi = list_of( 1 )( 2 )( 3 );  test_variant_array_constructor< int >( vi );
+            #endif
             list< double >   ld = list_of( 1.2 )( 1.3 );   test_variant_array_constructor< double >( ld );
             list< int >      li = list_of( 1 );            test_variant_array_constructor< int >( li );
                              li = list_of( 1 )( 2 );       test_variant_array_constructor< int >( li );

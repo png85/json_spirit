@@ -67,8 +67,10 @@ set(CPACK_PACKAGE_VERSION_PATCH 8)
 set(CPACK_PACKAGE_DESCRIPTION "A C++ JSON Parser/Generator Implemented with Boost Spirit")
 include(CPack)
 
+set(EXPORT_HEADERS )
 INSTALL(
   FILES
+  json_spirit/json_spirit_global.h
   json_spirit/json_spirit.h
   json_spirit/json_spirit_error_position.h
   json_spirit/json_spirit_reader.h
