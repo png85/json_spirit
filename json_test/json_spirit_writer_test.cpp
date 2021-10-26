@@ -577,6 +577,9 @@ namespace
         {
             check_eq( 123, "123" );
             check_eq( 1.234, "1.2340000000000000" );
+            check_eq( nan(""), "NaN");
+            check_eq( std::stod("inf"), "Infinity");
+            check_eq( -std::stod("inf"), "-Infinity");
             check_eq( to_str( "abc" ), "\"abc\"" );
             check_eq( false, "false" );
             check_eq( Value_type::null, "null" );
