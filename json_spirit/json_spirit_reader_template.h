@@ -292,7 +292,7 @@ namespace json_spirit
 
       void new_special_real( Iter_type begin, Iter_type end )
       {
-        add_to_current(std::stod(std::string(begin,end)));
+        add_to_current(strtod(std::string(begin,end).c_str(),NULL));
       }
       
     private:
