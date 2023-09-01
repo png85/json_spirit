@@ -15,6 +15,7 @@
 #include "json_spirit_writer_options.h"
 
 #include <iomanip>
+#include <cmath>
 #include <boost/io/ios_state.hpp>
 
 namespace json_spirit
@@ -242,6 +243,7 @@ namespace json_spirit
 
         void output( double d )
         {
+          if (std::isfinite(d))
             if( remove_trailing_zeros_ )
             {
                 std::basic_ostringstream< Char_type > os;
@@ -259,6 +261,12 @@ namespace json_spirit
             {
                 append_double( os_, d, 17 );
             }
+          // use Javascript names for non-finite values (ie JSON5).
+          else if (std::isnan(d))
+            os_<<"NaN";
+          else // is infinite
+            os_<<(d<0?"-":"")<<"Infinity";
+            
         }
 
         static bool contains_composite_elements( const Array_type& arr )

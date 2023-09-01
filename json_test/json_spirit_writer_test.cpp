@@ -10,6 +10,7 @@
 #include "json_spirit_value.h" 
 
 #include <sstream>
+#include <string>
 #include <boost/integer_traits.hpp>
 
 using namespace json_spirit;
@@ -577,6 +578,9 @@ namespace
         {
             check_eq( 123, "123" );
             check_eq( 1.234, "1.2340000000000000" );
+            check_eq( nan(""), "NaN");
+            check_eq( INFINITY, "Infinity");
+            check_eq( -INFINITY, "-Infinity");
             check_eq( to_str( "abc" ), "\"abc\"" );
             check_eq( false, "false" );
             check_eq( Value_type::null, "null" );

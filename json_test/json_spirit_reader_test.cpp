@@ -158,6 +158,9 @@ namespace
             test_syntax( INT_MIN, INT_MAX );
             test_syntax( LLONG_MIN, LLONG_MAX );
             test_syntax( "[1 2 3]", false );
+            test_syntax( "NaN" );
+            test_syntax( "Infinity" );
+            test_syntax( "-Infinity" );
         }
 
         Value_type read_cstr( const char* c_str )
